@@ -1,0 +1,22 @@
+{
+  "name": "hyperfeed",
+  "version": "1.0.0",
+  "description": "",
+  "main": "lib/hyperfeed.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "Fedor Indutny <fedor@indutny.com> (http://darksi.de/)",
+  "license": "MIT",
+  "dependencies": {
+    "async": "^2.3.0",
+    "hyperbloom": "git://github.com/hyperbloom/hyperbloom.git",
+    "hyperbloom-chain": "git://github.com/hyperbloom/hyperbloom-chain.git",
+    "hypercore": "^5.11.2",
+    "hyperdiscovery": "^6.0.1",
+    "mkdirp": "^0.5.1",
+    "sodium-signatures": "^2.0.0",
+    "yargs": "^7.1.0"
+  }
+}

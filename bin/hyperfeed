@@ -1,0 +1,25 @@
+#!/usr/bin/env node
+const argv = require('yargs')
+    .usage('Usage: $0 [options] --dir ./directory')
+    .alias('p', 'port')
+    .default('port', 8367)
+    .alias('h', 'host')
+    .default('host', '::1')
+    .describe('dir', 'hyperfeed directory')
+    .describe('port', 'HTTP control server port')
+    .describe('host', 'HTTP control server host')
+    .demand('dir')
+    .argv;
+
+const HyperFeed = require('../');
+
+const h = new HyperFeed({
+  storage: argv.dir
+});
+
+h.listen(argv.port, argv.host, (err, info) => {
+  console.log('Listening on [%s]:%d, feedKey=%s',
+              info.address,
+              info.port,
+              info.feedKey.toString('hex'));
+});
