@@ -11,7 +11,9 @@
   "license": "MIT",
   "dependencies": {
     "async": "^2.3.0",
+    "body-parser": "^1.17.1",
     "debug": "^2.6.4",
+    "express": "^4.15.2",
     "hyperbloom": "git://github.com/hyperbloom/hyperbloom.git",
     "hyperbloom-chain": "git://github.com/hyperbloom/hyperbloom-chain.git",
     "hypercore": "^5.11.2",
