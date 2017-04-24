@@ -64,7 +64,7 @@ Some standard messages (skipping common fields):
 # Links
 
 ```
-<base64-encoded feed key>/<message-index>
+hf/<base64-encoded feed key>/<message-index>
 ```
 
 See [Trust Link][0] for details.
