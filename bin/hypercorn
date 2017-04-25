@@ -5,18 +5,18 @@ const argv = require('yargs')
     .default('port', 8367)
     .alias('h', 'host')
     .default('host', '127.0.0.1')
-    .describe('dir', 'hyperfeed directory')
+    .describe('dir', 'hypercorn directory')
     .describe('port', 'HTTP control server port')
     .describe('host', 'HTTP control server host')
     .demand('dir')
     .argv;
 
-const hyperfeed = require('../');
+const hypercorn = require('../');
 
-const HyperFeed = hyperfeed.HyperFeed;
-const API = hyperfeed.API;
+const HyperCorn = hypercorn.HyperCorn;
+const API = hypercorn.API;
 
-const h = new HyperFeed({
+const h = new HyperCorn({
   storage: argv.dir
 });
 

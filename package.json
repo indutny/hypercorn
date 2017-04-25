@@ -1,8 +1,11 @@
 {
-  "name": "hyperfeed",
+  "name": "hypercorn",
   "version": "1.0.0",
   "description": "",
-  "main": "lib/hyperfeed.js",
+  "main": "lib/hypercorn.js",
+  "bin": {
+    "hypercorn": "bin/hypercorn"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

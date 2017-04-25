@@ -1,4 +1,4 @@
-# hyperfeed
+# hypercorn
 
 **WORK IN PROGRESS/EXPERIMENTAL**
 

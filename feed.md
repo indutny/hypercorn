@@ -14,6 +14,20 @@ All messages MUST have following structure:
 
 Some standard messages (skipping common fields):
 
+## Open
+
+```js
+{
+  "type": "open",
+  "payload": {
+    "protocol": "hypercorn",
+    "version": 1
+  }
+}
+```
+
+First message!
+
 ## Post
 
 ```js
