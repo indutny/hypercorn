@@ -21,7 +21,10 @@ Some standard messages (skipping common fields):
   "type": "post",
   "payload": {
     "content": "text content",
-    "reply_to": "link" // **optional**
+    "reply_to": /* optional */ {
+      "feed_key": "...",
+      "index": 0
+    }
   }
 }
 ```
@@ -38,6 +41,8 @@ Some standard messages (skipping common fields):
   }
 }
 ```
+
+See [Trust Link][0] for details.
 
 ## Follow
 
@@ -61,12 +66,33 @@ Some standard messages (skipping common fields):
 }
 ```
 
-# Links
+# Meta
 
-```
-hf/<base64-encoded feed key>/<message-index>
-```
+HyperBloom is used for storing replies and other public editable information.
+The values are encoded this way:
 
-See [Trust Link][0] for details.
+- `key_len` - 1 byte key length
+- `key` - bytes of key
+- `value_len` - 1 byte value length
+- `value` - bytes of value
+
+`key_len` must be between 0 and 127 (both inclusive).
+
+## Keys
+
+### Messages
+
+For the messages key MUST have following structure:
+
+- `0` - 1 byte
+- `index` - 4 byte big endian integer
+
+## Values
+
+### Reply
+
+- `0` - 1 byte
+- `feed_key` - 32 byte feed key
+- `index` - 4 byte big endian integer
 
 [0]: https://github.com/hyperbloom/hyperbloom-protocol/blob/master/spec.md#signature-chain
