@@ -33,7 +33,7 @@ Some standard messages (skipping common fields):
   "type": "trust",
   "payload": {
     "expires_at": 123, // seconds since `1970-01-01T00:00:00.000Z`
-    "public_key": "base64-encoded Trustee's key",
+    "feed_key": "base64-encoded Trustee's key",
     "link": "base64-encoded Trust Link"
   }
 }

@@ -11,15 +11,24 @@ const argv = require('yargs')
     .demand('dir')
     .argv;
 
-const HyperFeed = require('../');
+const hyperfeed = require('../');
+
+const HyperFeed = hyperfeed.HyperFeed;
+const API = hyperfeed.API;
 
 const h = new HyperFeed({
   storage: argv.dir
 });
 
-h.listen(argv.port, argv.host, (err, info) => {
-  console.log('Listening on [%s]:%d, feedKey=%s',
-              info.address,
-              info.port,
-              info.feedKey.toString('base64'));
+const api = new API(h);
+
+h.listen(() => {
+  api.listen(argv.port, argv.host, () => {
+    const info = api.address();
+
+    console.log('Listening on [%s]:%d, feedKey=%s',
+                info.address,
+                info.port,
+                h.getFeedKey().toString('base64'));
+  });
 });
