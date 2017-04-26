@@ -42,7 +42,8 @@ tape('HyperCorn test', (t) => {
   function onTrust(err) {
     t.error(err, '`.trust()` should not error');
 
-    a.post('reply', {
+    a.post({
+      content: 'reply',
       reply_to: {
         feed_key: b.getFeedKey(),
         index: 0
