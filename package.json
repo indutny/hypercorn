@@ -26,5 +26,10 @@
     "random-access-memory": "^2.4.0",
     "sodium-signatures": "^2.0.0",
     "yargs": "^7.1.0"
+  },
+  "devDependencies": {
+    "mkdirp": "^0.5.1",
+    "mocha": "^3.3.0",
+    "rimraf": "^2.6.1"
   }
 }
