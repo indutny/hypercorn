@@ -68,6 +68,21 @@ tape('HyperCorn test', (t) => {
     t.deepEqual(reply.feedKey.toBuffer(), a.getFeedKey(), 'reply link feed');
     t.equal(reply.index, 1, 'reply link index');
 
+    a.follow(b.getFeedKey(), onFollow);
+  }
+
+  function onFollow(err) {
+    t.error(err, '`.follow()` should not error');
+
+    // Same thing, hyperbloom is eventually consistent
+    setTimeout(() => {
+      a.getMessage({ feedKey: b.getFeedKey(), index: 0 }, onRemoteMessage);
+    }, 1000);
+  }
+
+  function onRemoteMessage(err, message) {
+    t.error(err, 'remote `.getMessage()` should not error');
+    t.equal(message.meta.length, 1, 'reply should get through to remote too');
     end();
   }
 
