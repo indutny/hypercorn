@@ -44,8 +44,8 @@ tape('HyperCorn test', (t) => {
 
     a.post({
       content: 'reply',
-      reply_to: {
-        feed_key: b.getFeedKey(),
+      replyTo: {
+        feedKey: b.getFeedKey(),
         index: 0
       }
     }, onPost);
