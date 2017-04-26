@@ -11,7 +11,7 @@ const B_DIR = path.join(TMP_DIR, 'b');
 const HyperCorn = require('../').HyperCorn;
 
 tape('HyperCorn test', (t) => {
-  t.timeoutAfter(5000);
+  t.timeoutAfter(50000);
 
   rimraf.sync(TMP_DIR);
 
@@ -47,14 +47,28 @@ tape('HyperCorn test', (t) => {
         feed_key: b.getFeedKey(),
         index: 0
       }
-    }, onReply);
+    }, onPost);
   }
 
-  function onReply(err) {
+  function onPost(err) {
+    t.error(err, '`.post()` should not error');
+
+    // The time to get the message is not deterministic
     setTimeout(() => {
-      t.error(err, '`.post()` should not error');
-      end();
-    }, 2500);
+      b.getMessage({ feedKey: b.getFeedKey(), index: 0 }, onMessage);
+    }, 1000);
+  }
+
+  function onMessage(err, message) {
+    t.error(err, '`.getMessage()` should not error');
+    t.equal(message.meta.length, 1, 'reply should get through');
+    t.equal(message.meta[0].type, 'reply', 'reply should have `reply` type');
+
+    const reply = message.meta[0].payload;
+    t.deepEqual(reply.feedKey.toBuffer(), a.getFeedKey(), 'reply link feed');
+    t.equal(reply.index, 1, 'reply link index');
+
+    end();
   }
 
   function end() {
